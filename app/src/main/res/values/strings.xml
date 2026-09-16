@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Moving Traveler</string>
+    <string name="search_coordinates_ready">Coordinates ready</string>
+    <string name="search_minimum">Type at least 3 characters, or enter coordinates.</string>
+    <string name="search_coordinate_hint">Enter latitude, longitude (for example 28.6139, 77.2090).</string>
+    <string name="search_setup_needed">Add routing access to search places, or choose a point on the map.</string>
+    <string name="search_loading">Searching…</string>
+    <string name="search_failure">Couldn\'t search. Try again.</string>
+    <string name="place_no_coordinates">This place has no usable coordinates. Try another.</string>
+    <string name="search_offline">Search places online, or enter latitude, longitude.</string>
+    <string name="routing_access_update">Update routing access</string>
+    <string name="routing_key_remove">Remove saved key</string>
+    <string name="routing_key_saving">Saving securely on this device…</string>
+    <string name="routing_key_save_failure">Could not save securely. Check your device security settings and try again.</string>
+    <string name="routing_key_replace">Replace key</string>
+    <string name="routing_key_save">Save key</string>
+</resources>
