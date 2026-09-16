@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.android.gms.oss-licenses-plugin'
+}
+
+// Optional publisher routing configuration; test users can enter their own key inside the app.
+def localSecrets = new Properties()
+def secretsFile = rootProject.file('secrets.properties')
+if (secretsFile.exists()) secretsFile.withInputStream { localSecrets.load(it) }
+def configValue = { name -> providers.gradleProperty(name).getOrElse(localSecrets.getProperty(name, '')) }
+def javaString = { value -> groovy.json.JsonOutput.toJson(value) }
+
+android {
+    namespace 'cl.coders.movingtraveler'
+    compileSdk 36
+    buildToolsVersion '36.0.0'
+    defaultConfig {
+        applicationId 'cl.coders.movingtraveler'
+        minSdk 23
+        targetSdk 36
+        versionCode 5
+        versionName '1.4.0'
+        buildConfigField 'String', 'GEOAPIFY_API_KEY', javaString(configValue('GEOAPIFY_API_KEY'))
+        buildConfigField 'String', 'PUBLIC_PRIVACY_URL', javaString(configValue('PUBLIC_PRIVACY_URL'))
+        buildConfigField 'String', 'PUBLIC_TERMS_URL', javaString(configValue('PUBLIC_TERMS_URL'))
+        buildConfigField 'String', 'PUBLIC_SOURCE_URL', javaString(configValue('PUBLIC_SOURCE_URL'))
+    }
+    buildFeatures { buildConfig true }
+    signingConfigs {
+        debug {
+            if (providers.gradleProperty('debugKeystore').isPresent()) {
+                storeFile file(providers.gradleProperty('debugKeystore').get())
+            }
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        debug { applicationIdSuffix '.debug'; versionNameSuffix '-debug' }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    lint { abortOnError true; checkReleaseBuilds true }
+    testOptions {
+        unitTests.includeAndroidResources = true
+        unitTests.all {
+            def testHome = layout.buildDirectory.dir('test-home').get().asFile
+            doFirst { testHome.mkdirs() }
+            systemProperty 'user.home', testHome.absolutePath
+            systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'
+        }
+    }
+}
+dependencies {
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'org.maplibre.gl:android-sdk-opengl:13.6.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.16.1'
+}
+
+// Google's viewer now requires API24; a small native viewer keeps this app on API23.
+// AGP emits dependency metadata for release. Include those notices in test APKs too.
+tasks.configureEach { task ->
+    if (task.name != 'debugOssLicensesTask') return
+    dependsOn 'releaseOssLicensesTask'
+    doLast {
+        copy {
+            from layout.buildDirectory.dir('generated/res/releaseOssLicensesTask/raw')
+            into layout.buildDirectory.dir('generated/res/debugOssLicensesTask/raw')
+        }
+    }
+}
