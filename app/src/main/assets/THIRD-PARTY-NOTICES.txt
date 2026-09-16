@@ -1,0 +1,66 @@
+Moving Traveler 1.4.0 — version code 5 — 15 September 2026
+
+Application source: GNU GPL version 3 or later, with the scoped additional Google Play Services linking permission in docs/COPYING-EXCEPTION.md. The complete GPL text and build source accompany this release. Configure a public corresponding-source URL for each distributed version.
+
+Inspired by FakeTraveler by Matías Castillo Felmer (https://github.com/mcastillof/faketraveler). The implementation is independently authored; the upstream README and attribution are preserved in UPSTREAM.md. No upstream Java implementation or launcher artwork is bundled.
+
+VISUAL REFERENCES
+
+The journey sheet, place search and grouped travel modes introduced in version 1.3 were visually inspired by these user-approved 21st references:
+HeroUI Drawer: https://21st.dev/@hero_ui/components/heroui-drawer/placement
+Jolly Search Field: https://21st.dev/@jolbol1/components/searchfield
+Segmented Button Group: https://21st.dev/@ruixen.ui/components/segmented-button-group
+
+The app's native Android UI is independently authored. No React component source or web runtime from these references is copied or bundled. This visual credit does not imply endorsement or affiliation with the component authors or 21st.
+
+MAPLIBRE NATIVE
+
+Source: https://github.com/maplibre/maplibre-native
+License: https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md
+
+BSD 2-Clause License
+
+Copyright (c) 2021 MapLibre contributors
+Copyright (c) 2018-2021 MapTiler.com
+Copyright (c) 2014-2020 Mapbox
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+MAPS, ROUTES AND SEARCH
+
+Map display: OpenFreeMap, with the Liberty style.
+https://openfreemap.org/
+https://openfreemap.org/quick_start/
+Terms: https://openfreemap.org/tos/
+Privacy: https://openfreemap.org/privacy/
+
+Map data: Copyright OpenStreetMap contributors, available under the Open Database License (ODbL).
+https://www.openstreetmap.org/copyright
+Map schema/credits: Copyright OpenMapTiles.
+https://openmaptiles.org/
+
+Routing and place search: Powered by Geoapify.
+https://www.geoapify.com/
+Terms: https://www.geoapify.com/terms-and-conditions/
+Privacy: https://www.geoapify.com/privacy-policy/
+
+Preserve the on-map data-provider attribution and Geoapify attribution alongside route/search results. These data/service terms are separate from the application code license. Provider content is not relicensed as GPL by this project.
+
+OTHER COMPONENTS
+
+Optional Google Play Services location components retain their applicable Google terms and are not relicensed as GPL. Map rendering and Geoapify access do not require Google billing or Firebase.
+Google privacy: https://policies.google.com/privacy
+Android SDK terms: https://developer.android.com/studio/terms
+
+The Gradle wrapper in the corresponding source is distributed under Apache License 2.0, copyright Gradle contributors.
+https://www.apache.org/licenses/LICENSE-2.0
+
+Google's OSS licenses Gradle plugin generates notices for the Maven dependencies in this build. Tap Library licenses to inspect those full notices. That list also includes MapLibre native third-party notices: the verbatim upstream core aggregate from Android release 13.6.1, bundled in MAPLIBRE-NATIVE-NOTICES.txt. Each native/transitive component retains its own copyright and license.
+
+Version 1.4.0 does not bundle the retired Google Maps/Firebase planning stack or Leaflet web map assets. No affiliation with OpenStreetMap, Geoapify, Google, WhatsApp or Meta is implied.
